@@ -29,7 +29,7 @@
             startCountdown();
         }
 
-        window.onload = function() {
+        function checkReset() {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('reset')) {
                 resetCountdown();
@@ -37,6 +37,18 @@
                 startCountdown();
             }
         }
+
+        window.onload = checkReset;
+
+        // Polling mechanism to listen for reset parameter without reloading
+        setInterval(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('reset')) {
+                urlParams.delete('reset');
+                window.history.replaceState(null, null, window.location.pathname);
+                resetCountdown();
+            }
+        }, 1000);
     </script>
 </body>
 </html>
