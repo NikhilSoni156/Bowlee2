@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+</head>
+<body>
+    <div id="countdown">10</div>
+
+    <script>
+        let countdown;
+        let seconds = 10;
+
+        function startCountdown() {
+            countdown = setInterval(() => {
+                seconds--;
+                document.getElementById('countdown').innerText = seconds;
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                }
+            }, 1000);
+        }
+
+        function resetCountdown() {
+            clearInterval(countdown);
+            seconds = 10;
+            document.getElementById('countdown').innerText = seconds;
+            startCountdown();
+        }
+
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('reset')) {
+                resetCountdown();
+            } else {
+                startCountdown();
+            }
+        }
+    </script>
+</body>
+</html>
