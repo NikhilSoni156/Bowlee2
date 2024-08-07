@@ -6,11 +6,11 @@
     <title>Countdown</title>
 </head>
 <body>
-    <div id="countdown">10</div>
+    <div id="countdown">100</div>
 
     <script>
         let countdown;
-        let seconds = 50;
+        let seconds = 100;
 
         function startCountdown() {
             countdown = setInterval(() => {
@@ -24,7 +24,7 @@
 
         function resetCountdown() {
             clearInterval(countdown);
-            seconds = 50;
+            seconds = 100;
             document.getElementById('countdown').innerText = seconds;
             startCountdown();
         }
